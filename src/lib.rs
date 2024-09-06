@@ -141,7 +141,7 @@ pub use tokio_tungstenite::tungstenite::Message;
 ///
 /// See the [module docs](self) for an example.
 #[derive(Debug)]
-pub struct WebSocketUpgrade<F = DefaultOnFailedUpdgrade> {
+pub struct WebSocketUpgrade<F = DefaultOnFailedUpgrade> {
     config: WebSocketConfig,
     /// The chosen protocol sent in the `Sec-WebSocket-Protocol` header of the response.
     protocol: Option<HeaderValue>,
@@ -369,7 +369,7 @@ where
             protocol: None,
             sec_websocket_key,
             on_upgrade,
-            on_failed_upgrade: DefaultOnFailedUpdgrade,
+            on_failed_upgrade: DefaultOnFailedUpgrade,
             sec_websocket_protocol,
         })
     }
@@ -493,9 +493,9 @@ where
 /// It simply ignores the error.
 #[non_exhaustive]
 #[derive(Debug)]
-pub struct DefaultOnFailedUpdgrade;
+pub struct DefaultOnFailedUpgrade;
 
-impl OnFailedUpdgrade for DefaultOnFailedUpdgrade {
+impl OnFailedUpdgrade for DefaultOnFailedUpgrade {
     #[inline]
     fn call(self, _error: hyper::Error) {}
 }
