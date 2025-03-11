@@ -101,7 +101,6 @@
 #![cfg_attr(test, allow(clippy::float_cmp))]
 
 use self::rejection::*;
-use async_trait::async_trait;
 use axum_core::{
     extract::FromRequestParts,
     response::{IntoResponse, Response},
@@ -330,7 +329,6 @@ impl<C> WebSocketUpgrade<C> {
     }
 }
 
-#[async_trait]
 impl<S> FromRequestParts<S> for WebSocketUpgrade
 where
     S: Sync,
