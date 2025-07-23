@@ -285,8 +285,8 @@ impl<C> WebSocketUpgrade<C> {
             sign(self.sec_websocket_key.as_bytes()),
         );
 
-        if let Some(protocol) = self.protocol {
-            headers.insert(header::SEC_WEBSOCKET_PROTOCOL, protocol);
+        if let Some(sec_websocket_protocol) = self.sec_websocket_protocol {
+            headers.insert(header::SEC_WEBSOCKET_PROTOCOL, sec_websocket_protocol);
         }
 
         (StatusCode::SWITCHING_PROTOCOLS, headers).into_response()
